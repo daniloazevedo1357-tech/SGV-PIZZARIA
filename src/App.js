@@ -150,7 +150,7 @@ const pcmToWav = (pcm16, sampleRate) => {
 const playTtsAlert = async (text) => {
     try {
         const apiKey = ""; 
-        const apiUrl = https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey};
+        const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}';
 
         const payload = {
             contents: [{
