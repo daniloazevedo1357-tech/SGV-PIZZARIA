@@ -1,0 +1,19 @@
+/* Estilos Globais
+  Este arquivo é usado para importar as diretivas do Tailwind CSS 
+  e definir estilos globais, como a fonte padrão.
+*/
+
+/* Importa as classes base, de componentes e utilitárias do Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define a fonte 'Inter' como a fonte padrão para toda a aplicação */
+body {
+  font-family: 'Inter', sans-serif;
+  /* Garante que o corpo ocupe toda a altura da viewport */
+  min-height: 100vh; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
