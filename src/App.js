@@ -238,15 +238,10 @@ const ReadyTimeDisplay = ({ timestamp_pronta }) => {
         const diffInMilliseconds = new Date().getTime() - readyTime.getTime();
         
         let displayTime;
-        
-        if (diffInMilliseconds < 60000) { // Menos de 60 segundos
-          // Alterado para '0 min' conforme a solicitação para evitar o '< 1 min'
-          displayTime = 'Pronta há 0 min'; 
-        } else {
-          // Para 1 minuto ou mais, usamos Math.floor para garantir que só conte o minuto completo
-          const diffInMinutes = Math.floor(diffInMilliseconds / 60000);
-          displayTime = Pronta há ${diffInMinutes} min;
-        }
+ } else {
+  const diffInMinutes = Math.floor(diffInMilliseconds / 60000);
+  displayTime = `Pronta há ${diffInMinutes} min`;
+}
         
         setTimeMetric(displayTime);
       } else {
