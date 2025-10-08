@@ -232,21 +232,26 @@ const ReadyTimeDisplay = ({ timestamp_pronta }) => {
   useEffect(() => {
     const updateTime = () => {
       // Verifica se o timestamp de pronta existe e pode ser convertido para Data
-      if (timestamp_pronta?.toDate) {
-        const readyTime = timestamp_pronta.toDate();
-        // Usamos a diferença em milissegundos
-        const diffInMilliseconds = new Date().getTime() - readyTime.getTime();
-        
-        let displayTime;
- } else {
-  const diffInMinutes = Math.floor(diffInMilliseconds / 60000);
-  displayTime = `Pronta há ${diffInMinutes} min`;
+     if (timestamp_pronta?.toDate) {
+  const readyTime = timestamp_pronta.toDate();
+  // Usamos a diferença em milissegundos
+  const diffInMilliseconds = new Date().getTime() - readyTime.getTime();
+
+  let displayTime;
+
+  if (diffInMilliseconds < 60000) { // Menos de 60 segundos
+    displayTime = 'Pronta há 0 min'; 
+  } else {
+    // Para 1 minuto ou mais
+    const diffInMinutes = Math.floor(diffInMilliseconds / 60000);
+    displayTime = `Pronta há ${diffInMinutes} min`;
+  }
+    
+  setTimeMetric(displayTime);
+} else {
+  // Se não tem timestamp, zera a métrica (opcional)
+  setTimeMetric(''); 
 }
-        
-        setTimeMetric(displayTime);
-      } else {
-        setTimeMetric('');
-      }
     };
 
     updateTime(); // Execução inicial
