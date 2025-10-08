@@ -232,20 +232,24 @@ const ReadyTimeDisplay = ({ timestamp_pronta }) => {
   useEffect(() => {
     const updateTime = () => {
       // Verifica se o timestamp de pronta existe e pode ser convertido para Data
-     if (timestamp_pronta?.toDate) {
+ if (timestamp_pronta?.toDate) {
   const readyTime = timestamp_pronta.toDate();
-  // Usamos a diferença em milissegundos
   const diffInMilliseconds = new Date().getTime() - readyTime.getTime();
 
   let displayTime;
 
-  if (diffInMilliseconds < 60000) { // Menos de 60 segundos
+  if (diffInMilliseconds < 60000) { 
     displayTime = 'Pronta há 0 min'; 
   } else {
-    // Para 1 minuto ou mais
     const diffInMinutes = Math.floor(diffInMilliseconds / 60000);
     displayTime = `Pronta há ${diffInMinutes} min`;
   }
+    
+  setTimeMetric(displayTime); // <--- Comando para salvar o valor!
+} else {
+  // Se não tem timestamp, zera a métrica (opcional)
+  setTimeMetric(''); 
+}
     
   setTimeMetric(displayTime);
 } else {
@@ -273,9 +277,7 @@ const ReadyTimeDisplay = ({ timestamp_pronta }) => {
 const OrderCard = ({ pedido, handleUpdate, isDuplicate }) => {
   const statusInfo = statusMap[pedido.status_atual] || statusMap['Pendente'];
 
-  // OBS: A lógica estática de timeMetric foi removida, pois agora é tratada pelo ReadyTimeDisplay.
-  // Apenas mantemos as referências de tempo se necessário, mas não são usadas aqui.
-
+ 
   return (
     <div className={p-4 rounded-lg shadow-xl mb-4 transition-all duration-300 transform hover:scale-[1.01] ${statusInfo.color} bg-opacity-90 relative}>
       {/* Alerta Visual para ID Duplicado/Repetido */}
