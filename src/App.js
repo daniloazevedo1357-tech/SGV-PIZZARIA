@@ -252,7 +252,7 @@ const ReadyTimeDisplay = ({ timestamp_pronta }) => {
 }
     
   setTimeMetric(displayTime);
-} else {
+} else {;
   // Se não tem timestamp, zera a métrica (opcional)
   setTimeMetric(''); 
 }
